@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>星辰在线书城</title>
+    <link href="img/book.ico" rel="icon">
+    <style>
+     *{
+         margin: 0;
+         padding: 0;
+     }
+     li{
+         list-style-type:none;
+     }
+     a{
+         text-decoration: none;
+         padding: 0;
+        }
+     .bg{
+         width: 100%;
+        }
+     .header_bg{
+         background: #ddd;
+         width: 1200px;
+         height: 40px;
+         margin: 0 auto;
+         color: #aaa;
+         line-height:40px;
+         font-size: 16px;
+        }
+        .header_bg_reg{
+            padding-left: 5px;
+            float: left;
+        }
+        #logout{
+            color: red;
+        }
+        .header_nav{
+            float: right;
+            padding: 0 10px;
+            position: relative;
+        }
+        .header_nav img{
+            padding-top: 8px;
+            padding-right: 1px;
+        }
+        .header_nav_num{
+            color: red;
+            font-weight: bolder;
+        }
+
+        .reg_sp{
+            color: crimson;
+            font-size: 18px;
+            line-height:24px;
+        }
+        .reg_p{
+            margin-bottom: 5px;
+        }
+
+        .reg_yzm{
+            color:green;
+            background: #dddddd;
+            width: 100px;
+            height: 40px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 18px;
+            line-height: 40px;
+        }
+        .reg_p input{
+            border: 1px solid #ccc;
+            background: #fff;
+            width: 200px;
+            height: 25px;
+            color: #666;
+            border-radius: 4px;
+        }
+        #reg_yzm{
+            width: 193px;
+        }
+     #login_yzm{
+         width: 193px;
+     }
+     .header_bg a:hover{
+         color:red;
+     }
+     .nav_bg{
+         width: 1200px;
+         height: 70px;
+         margin: 0 auto;
+         color: #aaa;
+         line-height:40px;
+         font-size: 16px;
+     }
+     .nav_bg_tb{
+         float: left;
+     }
+     .nav_bg_tb_size{
+         width: 150px;
+         height: 50px;
+         padding-top: 10px;
+
+     }
+     .nav_bg_ewm{
+         float: left;
+         margin-left: 40px;
+     }
+     .nav_bg_ewm_size{
+         width: 55px;
+         height: 55px;
+         padding-top: 10px;
+     }
+     .nav_bg_search{
+         float: left;
+         margin-left: 100px;
+         padding-top: 15px;
+     }
+      .nav_bg_search_ipt{
+          width: 350px;
+          height: 40px;
+          border-radius: 5px;
+          border-color: #003eff;
+          font-size: 25px;
+          border-width: 2px;
+      }
+        #nav_search{
+            height: 43px;
+            width: 42px;
+            margin-top: -6px;
+            border-radius: 5px;
+            border-color: #003eff;
+            font-size: 25px;
+            border-width: 2px;
+        }
+        .nav_search_img{
+           margin-left: -8px;
+            margin-top: -2px;
+        }
+        .nav_bg_gwc{
+            float: right;
+            width:250px ;
+            height: 70px;
+            position: relative;
+        }
+
+     .nav_bg_gwc_1{
+                  float: right;
+                  width: 100px;
+                  height: 50px;
+                  line-height: 50px;
+                  border: 1px solid #f22;
+                  border-radius: 4px;
+                  background: #f22;
+                  margin-top: 10px;
+                  color: #666;
+                  position: relative;
+                  cursor:pointer;
+              }
+     .nav_bg_gwc_1 img{
+         padding-top: 15px;
+     }
+     .nav_bg_gwc_1_gwc{
+                     position: absolute;
+                     top:55px;
+                     right: -2px;
+                     background: white;
+                     width: 205px;
+                     height: 100px;
+                     z-index: 1;
+                     display: none;
+                 }
+     .nav_bg_gwc_1_gwc_con{
+         color: #666;
+         text-align: center;
+         line-height: 100px;
+         width: 205px;
+         height: 100px;
+     }
+     .nav_bg_gwc :hover .nav_bg_gwc_1_gwc{
+         display: inline-block;
+     }
+
+
+
+
+     .nav_bg_gwc_2{
+              float: right;
+              width: 100px;
+              text-align: center;
+              height: 50px;
+              line-height: 50px;
+              border: 1px solid #dddddd;
+              border-radius: 4px;
+              background: #dddddd;
+              margin-top: 10px;
+              color: #666;
+              cursor:pointer;
+          }
+
+
+
+
+     .book_show{
+         width: 600px;
+         height: 170px;
+     }
+     .book_show p,.book_show img{
+         float: left;
+     }
+     .book_show img{
+         width: 90px;
+         height: 150px;
+         margin-top: 10px;
+     }
+     #sbook hr{
+         width: 550px;
+     }
+     #sbook hr:last-child{
+         display: none;
+     }
+     #sbook .book_buy{
+        position: absolute;
+         left:500px;
+     }
+
+
+
+
+
+
+     .banner{
+         width: 750px;
+         height: 350px;
+         /*background: black;*/
+         /*子绝父相*/
+         position: relative;
+         /*超出部分全部隐藏，解决横向滚动条*/
+         overflow: hidden;
+     }
+     .banner ul{
+         position: absolute;
+     }
+     .banner ul li{
+         /*这个100%是相对于父盒子的（会把父盒子的宽度继承过来,如父盒子300%,这这里的100%就会相当于300%）*/
+         width: 750px;
+         height: 350px;
+         float: left;
+         background:  no-repeat center center;
+         background-size:800px 350px;
+     }
+     /*.banner ul li:nth-child(1){*/
+     /*background: url('./1.jpg') no-repeat center center;*/
+     /*}
+     /*.banner ul li:nth-child(2){*/
+     /*background: url('./2.jpg') no-repeat center center;*/
+     /*}*/
+     /*.banner ul li:nth-child(3){*/
+     /*background: url('./3.jpg') no-repeat center center;*/
+     /*}*/
+     .banner ol{
+         /*width: 60px;*/
+         height: 20px;
+         background: rgba(0,0,0,0.5);
+         position: absolute;
+         left:50%;
+         /*margin-left: -40px;*/
+         bottom: 30px;
+         padding: 0 10px;
+         border-radius: 10px;
+     }
+     .banner ol li{
+         width: 10px;
+         height: 10px;
+         float: left;
+         margin: 5px 5px;
+         background: rgba(255,255,255,0.5);
+         border-radius: 50%;
+         cursor: pointer;
+     }
+     .banner ol .current{
+         background: rgba(255,255,255,1);
+     }
+     .banner i{
+         width: 58px;
+         height: 120px;
+         position: absolute;
+         top: 50%;
+         margin-top: -60px;
+         cursor: pointer;
+         border-radius: 5px;
+         display: none;
+     }
+     .banner .left{
+         left: 60px;
+         background: url('img/left_right.png') no-repeat 0 0;
+     }
+     .banner .right{
+         right: 60px;
+         background: url('img/left_right.png') no-repeat 0 -120px;
+     }
+     .banner .left:hover , .banner .right:hover{
+         background-color: rgba(0, 0, 0, 0.31);
+     }
+
+
+
+
+
+     .main{
+         width: 1200px;
+         height: 500px;
+        margin: 0 auto;
+     }
+     .main_nav_ul{
+         width: 1200px;
+         height:30px;
+         margin-top: 20px;
+     }
+     .main_nav_ul li{
+         float: left;
+         margin-right: 100px;
+         position: relative;
+     }
+
+     .main_nav_ul img{
+         position: absolute;
+         z-index: -1;
+         width: 35px;
+         height: 25px;
+         right:10px ;
+         margin-top: 3px;
+
+     }
+     .main_nav_ul_li{
+         width: 250px;
+         height:30px;
+         background: rgba(0,0,255,0.3);
+         border-radius: 4px;
+     }
+     .main_nav_ul_li_sp1{
+         position: absolute;
+         z-index: -1;
+         width: 200px;
+         height: 28px;
+         line-height: 28px;
+         margin-left: 85px;
+         font-size: 20px;
+     }
+     .main_nav_ul_li_sp2{
+         float: right;
+         margin-right: 30px;
+         margin-left: 50px;
+     }
+     .main_nav_ul_li_all{
+         color: #666;
+         font-size: 16px;
+     }
+     .main_nav_ul_li_all :first-child{
+         margin-left: 40px;
+     }
+        .main_content{
+            width: 1200px;
+            height: 500px;
+            margin: 0 auto;
+            background: rgba(255,0,0,0.3);
+        }
+        .main_content_ul{
+            width: 250px;
+            height: 500px;
+            background: rgba(255,0,50,0.3);
+            float: left;
+            position: relative;
+        }
+
+     .main_content_ul li{
+         text-align: center;
+         width: 250px;
+         height: 50px;
+         line-height: 50px;
+         font-size: 20px;
+         color: #666;
+     }
+     .main_content_div{
+         width: 950px;
+         height: 500px;
+         background: rgba(0,255,0,0.3);
+         float: left;
+     }
+     .main_content_ul_li{
+         width: 500px;
+         height: 500px;
+         position: absolute;
+         background: white;
+         left: 250px;
+         top: 0;
+         display: none;
+     }
+     .main_content_ul li:hover .main_content_ul_li{
+         display: inline-block;
+         z-index: 1000;
+         }
+     .main_content_ul_li img{
+         width: 150px;
+         height: 240px;
+     }
+     .main_content_ul_li img:hover
+     {
+         border: 1px solid red;
+     }
+
+     .main_content_ul li:hover{
+         background: red;
+     }
+
+
+     .main_content_div{
+         width: 750px;
+         height: 500px;
+     }
+     .main_content_div_left{
+         float: left;
+         width: 750px;
+         height: 500px;
+         background-image: url("img/1.jpg");
+         background-size: 800px 350px;
+     }
+     .main_content_div_left_ul{
+         width: 750px;
+         height: 150px;
+     }
+     .main_content_div_left_ul li{
+         width: 250px;
+         height: 150px;
+         float:left;
+         margin-top: 5px;
+         cursor: pointer;
+     }
+     .main_content_div_left_ul li img{
+         margin-top: -4px;
+         width: 250px;
+         height: 150px;
+     }
+
+     .main_content_div_right{
+         width: 200px;
+         height: 500px;
+         float: right;
+         background:#ccc;
+     }
+     .main_content_div_right_ul{
+         width: 200px;
+         height: 50px;
+         position: relative;
+         float: left;
+     }
+     .main_content_div_right_ul li{
+         float: left;
+         width: 100px;
+         height: 50px;
+         text-align: center;
+         line-height: 50px;
+     }
+     .main_content_div_right_ul li:hover{
+         background: #eee;
+     }
+     .main_content_div_right_ul_div{
+         background:#ddd;
+         width: 200px;
+         height: 450px;
+         position: absolute;
+         top: 50px;
+         left: 0;
+         display: none;
+         z-index: 1;
+     }
+     .main_content_div_right_ul li:hover .main_content_div_right_ul_div{
+         display:inline-block;
+       }
+     .main_content_div_left_div{
+         width: 200px;
+         height: 450px;
+         background: #ddd;
+         float:right;
+         text-align: center;
+
+     }
+     .content{
+         width: 1200px;
+         height: 400px;
+         margin: 40px auto;
+     }
+     hr{
+         margin-top: 10px;
+     }
+        .content_discount_header{
+            width: 1200px;
+            height: 40px;
+            float: left;
+        }
+     .content_discount_header_sp{
+         color: mediumvioletred;
+         width: 60px;
+         height: 40px;
+         font-size: 40px;
+         line-height: 40px;
+     }
+     .content_discount_header img{
+        margin-left: 100px;
+
+     }
+     .content_discount_header_time{
+    display: inline-block;
+     }
+     .content_discount_header_time_ul li{
+         float: left;
+         margin-left: 120px;
+     }
+     .content_discount_header_time span{
+         color: #666;
+         font-size: 18px;
+         margin-left: 120px;
+     }
+     .content_discount_header_time span:first-child{
+         margin-left: 40px!important;
+     }
+    .content_discount_header_content{
+        width: 1200px;
+        height: 360px;
+    }
+     .content_discount_header_content li{
+         width:195px;
+         height: 360px;
+         float: left;
+     }
+     .content_discount_header_content img{
+         width:190px;
+         height: 320px;
+         margin-left: 15px;
+     }
+     .price{
+         height: 40px;
+         width:200px ;
+         text-align: center;
+         color: red;
+         line-height: 40px;
+         font-size: 18px;
+         margin-left: 35px;
+     }
+     .del{
+          height: 40px;
+          width:160px ;
+          text-align: center;
+          color: #ccc;
+          line-height: 40px;
+         font-size: 14px;
+         margin-left: 20px;
+         text-decoration: line-through;
+      }
+
+
+
+
+        .footer_content{
+            width: 1200px;
+            height: 50px;
+            margin: 0 auto;
+        }
+        footer p{
+            color: #666;
+            font-size: 14px;
+            text-align: center;
+        }
+        .buy{
+
+        }
+        .jian,.jian{
+            background: #007fff;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+        .jian,.jian,.buy_num{
+            font-size: 18px;
+        }
+        .buy_div{
+            position: absolute;
+            top:130px;
+            right: 100px;
+        }
+
+    </style>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="css/dialog.css">
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/json2.js"></script>
+</head>
+<body>
+<div class="bg">
+    <header class="header_bg">
+        <div class="header_bg_reg">
+     <a href="#" id="reg">注册</a><a href="#" id="user_name">用户</a>|<a href="#" id="login">登陆</a><a href="#" id="logout">退出</a>
+        </div>
+        <div class="header_nav">
+            <a href="#"><img src="img/gouwuche.png"><span class="header_nav_sp">购物车</span><span class="header_nav_num">0</span></a>
+          <a href="#">收藏夹</a>
+               <a href="#book_class">书本分类</a>
+                <a href="#" id="contact_service">联系客服</a>
+        </div>
+    </header>
+    <div class="reg" title="用户注册">
+        <form>
+        <p class="reg_p">  <label>账  号 :</label><input type="text" title="请输入账号，不少于6位" name="user" id="user"><span class="reg_sp">*</span></p>
+        <p class="reg_p">   <label>密  码 :</label><input type="password" title="请输入密码，不少于6位" name="pass" id="pass"><span class="reg_sp">*</span></p>
+        <p class="reg_p">  <label>邮  箱 :</label><input type="text" title="请输入正确的邮箱" id="email" name="email"><span class="reg_sp">*</span></p>
+        <p class="reg_p">   <label>生  日 :</label><input type="date" id="birthday" name="birthday" id="birthday"></p>
+        <p class="reg_p">   <label>验证码:</label><input type="text" id="reg_yzm" width="20px" title="请输入下列的验证码"><span class="reg_sp">*</span></p>
+        <div class="reg_yzm">
+            <span class="reg_yzm_num"></span>
+        </div>
+        </form>
+    </div>
+    <div class="login" title="用户登录">
+        <form>
+        <p class="reg_p">  <label>账  号 :</label><input type="text" id="login_user" name="login_user"><span class="reg_sp">*</span></p>
+        <p class="reg_p">   <label>密  码 :</label><input type="password" id="login_pass" name="login_pass"><span class="reg_sp">*</span></p>
+        <p class="reg_p">   <label>验证码:</label><input type="text" id="login_yzm" width="20px"><span class="reg_sp">*</span></p>
+        <div class="reg_yzm">
+            <span class="reg_yzm_num"></span>
+        </div>
+        <div class="login_yzm">
+            <span class="login_yzm_num"></span>
+        </div>
+        </form>
+    </div>
+    <div id="sbook" title="搜索结果">
+
+    </div>
+    <div id="contact_service_con" title="联系客服">
+        <p>问题分类</p>
+        <p><select name="question" id="question">
+            <option value=1>商品真伪</option>
+            <option value=2>商品售后</option>
+            <option value=3>卖家服务</option>
+            <option value=4>其它问题</option>
+        </select></p>
+        <p>具体描述：</p>
+        <p><textarea style="height: 100px;width: 100%" id="question_dec"></textarea></p>
+         <span style="color:#666;text-align: center;font-size: 12px">客服联系电话:17614658523</span>
+    </div>
+    <div class="nav_bg">
+        <div class="nav_bg_tb">
+            <img src="img/tubiao.jpg" class="nav_bg_tb_size">
+        </div>
+        <div class="nav_bg_ewm">
+            <img src="img/ewm.png" class="nav_bg_ewm_size">
+        </div>
+        <div class="nav_bg_search">
+            <input type="text" class="nav_bg_search_ipt" placeholder="图书搜索">
+            <button id="nav_search"><img src="img/search_hui.png" class="nav_search_img"></button>
+        </div>
+        <div class="nav_bg_gwc">
+            <div class="nav_bg_gwc_1">
+                <img src="img/gouwuche.png">
+                <span class="nav_bg_gwc_1_zh">购物车</span>
+                <span class="nav_bg_gwc_1_num">0</span>
+                <div class="nav_bg_gwc_1_gwc">
+                    <div class="nav_bg_gwc_1_gwc_con">您的购物车空空如也</div>
+                </div>
+            </div>
+
+            <div class="nav_bg_gwc_2">
+              <span>历史订单</span>
+            </div>
+        </div>
+    </div>
+    <div id="his_order" title="历史订单">
+        <ul>
+            <li>
+                亲，您还未购买过任何商品！
+            </li>
+        </ul>
+    </div>
+    <div class="main">
+        <div class="main_nav">
+         <ul class="main_nav_ul">
+             <li class="main_nav_ul_li"><span class="main_nav_ul_li_sp1" id="book_class">图书分类</span><span class="main_nav_ul_li_sp2"><img src="img/down.jpg"></span></li>
+             <a href="commend_book.html" target="_blank"> <li class="main_nav_ul_li_all"><span>推荐书籍</span></li></a>
+             <a href="man_book.html" target="_blank"><li class="main_nav_ul_li_all"><span>男生频道</span></li></a>
+             <a href="wom_book.html" target="_blank"><li class="main_nav_ul_li_all"><span>女生频道</span></li></a>
+             <a href="kid_book.html" target="_blank"><li class="main_nav_ul_li_all"><span>少儿书籍</span></li></a>
+         </ul>
+        </div>
+        <div class="main_content">
+            <ul class="main_content_ul">
+                <li>经典著作
+                <div class="main_content_ul_li">
+                    <a href="#"><img src="img/book2.png"></a>
+                    <a href="#"><img src="img/book3.png"></a>
+                    <a href="#"><img src="img/book4.png"></a>
+                    <a href="#"><img src="img/book5.png"></a>
+                    <a href="#"><img src="img/book6.png"></a>
+                    <a href="#"><img src="img/book7.png"></a>
+                </div>
+                </li>
+                <li>社会科学
+                    <div class="main_content_ul_li">
+                        <a href="#"><img src="img/book8.png"></a>
+                        <a href="#"><img src="img/book9.png"></a>
+                        <a href="#"><img src="img/book10.png"></a>
+                        <a href="#"><img src="img/book11.png"></a>
+                        <a href="#"><img src="img/book12.png"></a>
+                        <a href="#"><img src="img/book13.png"></a>
+                    </div>
+                </li>
+                <li>财经管理
+                    <div class="main_content_ul_li">
+                        <a href="#"><img src="img/book14.png"></a>
+                        <a href="#"><img src="img/book15.png"></a>
+                        <a href="#"><img src="img/book16.png"></a>
+                        <a href="#"><img src="img/book17.png"></a>
+                        <a href="#"><img src="img/book18.png"></a>
+                        <a href="#"><img src="img/book20.png"></a>
+                    </div>
+                </li>
+                <li>历史地理
+                    <div class="main_content_ul_li">
+                        <a href="#"><img src="img/book20.png"></a>
+                        <a href="#"><img src="img/book21.png"></a>
+                        <a href="#"><img src="img/book22.png"></a>
+                        <a href="#"><img src="img/book2.png"></a>
+                        <a href="#"><img src="img/book3.png"></a>
+                        <a href="#"><img src="img/book4.png"></a>
+                    </div>
+                </li>
+                <li>政治法律
+                    <div class="main_content_ul_li">
+                        <a href="#"><img src="img/book10.png"></a>
+                        <a href="#"><img src="img/book7.png"></a>
+                        <a href="#"><img src="img/book18.png"></a>
+                        <a href="#"><img src="img/book8.png"></a>
+                        <a href="#"><img src="img/book15.png"></a>
+                        <a href="#"><img src="img/book12.png"></a>
+                    </div>
+                </li>
+                <li>摄影影视
+                    <div class="main_content_ul_li">
+                        <a href="#"><img src="img/book8.png"></a>
+                        <a href="#"><img src="img/book11.png"></a>
+                        <a href="#"><img src="img/book14.png"></a>
+                        <a href="#"><img src="img/book20.png"></a>
+                        <a href="#"><img src="img/book17.png"></a>
+                        <a href="#"><img src="img/book2.png"></a>
+                    </div>
+                </li>
+                <li>医药卫生
+                    <div class="main_content_ul_li">
+                        <a href="#"><img src="img/book18.png"></a>
+                        <a href="#"><img src="img/book9.png"></a>
+                        <a href="#"><img src="img/book4.png"></a>
+                        <a href="#"><img src="img/book21.png"></a>
+                        <a href="#"><img src="img/book7.png"></a>
+                        <a href="#"><img src="img/book12.png"></a>
+                    </div>
+                </li>
+                <li>生活休闲
+                    <div class="main_content_ul_li">
+                        <a href="#"><img src="img/book13.png"></a>
+                        <a href="#"><img src="img/book17.png"></a>
+                        <a href="#"><img src="img/book22.png"></a>
+                        <a href="#"><img src="img/book11.png"></a>
+                        <a href="#"><img src="img/book4.png"></a>
+                        <a href="#"><img src="img/book8.png"></a>
+                    </div>
+                </li>
+                <li>外国文学
+                    <div class="main_content_ul_li">
+                        <a href="#"><img src="img/book3.png"></a>
+                        <a href="#"><img src="img/book7.png"></a>
+                        <a href="#"><img src="img/book21.png"></a>
+                        <a href="#"><img src="img/book12.png"></a>
+                        <a href="#"><img src="img/book14.png"></a>
+                        <a href="#"><img src="img/book9.png"></a>
+                    </div>
+                </li>
+                <li>小&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp说
+                    <div class="main_content_ul_li">
+                        <a href="#"><img src="img/book2.png"></a>
+                        <a href="#"><img src="img/book6.png"></a>
+                        <a href="#"><img src="img/book18.png"></a>
+                        <a href="#"><img src="img/book11.png"></a>
+                        <a href="#"><img src="img/book5.png"></a>
+                        <a href="#"><img src="img/book13.png"></a>
+                    </div>
+                </li>
+            </ul>
+            <div class="main_content_div">
+                <div class="main_content_div_left">
+                    <p>
+                    <div class="banner">
+                        <ul></ul>
+                        <ol></ol>
+                        <i class="left"></i><i class="right"></i>
+                    </div>
+                    </p>
+                    <p>
+                        <ul class="main_content_div_left_ul">
+                    <li><img src="img/bag.png"></li>
+                    <li><img src="img/salebook.png"></li>
+                    <li><img src="img/salebook1.png"></li>
+                </ul>
+
+                </div>
+        </div>
+            <div class="main_content_div_right">
+                <p>
+                <ul class="main_content_div_right_ul">
+                    <li>信息公告
+                        <div class="main_content_div_right_ul_div">
+                            <p>这里是信息公告</p>
+                            <p>信息公告</p>
+                            <p>信息公告</p>
+                            <p>信息公告</p>
+                            <p>信息公告</p>
+                            <p>信息公告</p>
+                            <p>信息公告</p>
+                        </div>
+                    </li>
+                    <li>服务公告
+                        <div class="main_content_div_right_ul_div">
+                            <p>这里是服务公告</p>
+                            <p>服务公告</p>
+                            <p>服务公告</p>
+                            <p>服务公告</p>
+                            <p>服务公告</p>
+                            <p>服务公告</p>
+                            <p>服务公告</p>
+                        </div>
+                    </li>
+                </ul>
+                </p>
+                <p>
+                <div class="main_content_div_left_div">
+            <p>这里是信息公告</p>
+            <p>信息公告</p>
+            <p>信息公告</p>
+            <p>信息公告</p>
+            <p>信息公告</p>
+            <p>信息公告</p>
+            <p>信息公告</p>
+                </div>
+                </p>
+            </div>
+    </div>
+    </div>
+    <div class="content">
+        <div class="content_discount_header">
+        <span class="content_discount_header_sp">
+            折扣
+        </span>
+                <img src="img/clock.png">
+            <div class="content_discount_header_time">
+
+                <span id="time1">00:00场</span>
+                <span id="time2">08:00场</span>
+                <span id="time3">12:00场</span>
+                <span id="time4">16:00场</span>
+                <span id="time5">20:00场</span>
+
+            </div>
+            <hr>
+            <ul class="content_discount_header_content">
+               <li>
+                   <p><a href="###"><img src="img/book3.png"></a></p>
+                   <p> <span class="price">秒杀价：¥16</span><span class="del">31.5</span></p>
+               </li>
+                <li>
+                    <p><a href="###"><img src="img/book7.png"></a></p>
+                    <p> <span class="price">秒杀价：¥22</span><span class="del">46</span></p>
+                </li>
+                <li>
+                    <p><a href="###"><img src="img/book9.png"></a></p>
+                    <p> <span class="price">秒杀价：¥33</span><span class="del">98.5</span></p>
+                </li>
+                <li>
+                    <p><a href="###"><img src="img/book11.png"></a></p>
+                    <p> <span class="price">秒杀价：¥12</span><span class="del">29</span></p>
+                </li>
+                <li>
+                    <p><a href="###"><img src="img/book15.png"></a></p>
+                    <p> <span class="price">秒杀价：¥22</span><span class="del">50</span></p>
+                </li>
+                <li>
+                    <p><a href="###"><img src="img/book17.png"></a></p>
+                    <p> <span class="price">秒杀价：¥11</span><span class="del">26.5</span></p>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+    <hr>
+    <div class="footer_content">
+        <footer>
+            <p>联系我们：17614658523</p>
+          <p>
+              或者微信扫描顶部二维码加我为好友
+          </p>
+        </footer>
+    </div>
+    <div class="buy" title="购物车">
+
+    </div>
+</div>
+<script>
+    $(function () {
+
+//判断是否有登陆缓存
+  if($.cookie('user'))
+  {
+      $("#login,#reg").hide();
+      $("#user_name,#logout").show();
+      $("#user_name").html($.cookie('user'));
+  }
+  else
+  {
+      $("#login,#reg").show();
+      $("#user_name,#logout").hide();
+      $("#user_name").html('用户');
+  }
+
+
+//=========================
+
+
+        //确定本地时间
+        var time=new Date();
+        var time_num=Math.floor(time.getHours()/4);
+        //确定折扣时间范围
+        if(time_num<2)
+            $("#time1").css("color","red");
+        else if(time_num<3)
+            $("#time2").css("color","red");
+        else if(time_num<4)
+            $("#time3").css("color","red");
+        else if(time_num<5)
+            $("#time4").css("color","red");
+        else
+            $("#time5").css("color","red");
+
+        //此处可以用switch
+
+
+//=========================
+
+        //===============================注册页面控制以及注册ajax==========================
+        $('.reg').dialog({
+            autoOpen:false,
+            modal:true,
+            resizable:false,
+            buttons: {
+                '提交': function () {
+                    if($("#reg_yzm").val()==$(".reg_yzm_num").html())
+                    {
+                        $.ajax({
+                            url:'add.php',
+                            type:'POST',
+                            data:{
+                                user:$("#user").val(),
+                                pass:$("#pass").val(),
+                                email:$("#email").val(),
+                                birthday:$("#birthday").val(),
+                            },
+                            success:function () {
+                                alert("注册成功！");
+                                $('.reg').dialog('close');
+                            },
+                            error:function () {
+                                alert("注册失败！");
+                            }
+                        })
+
+                    }
+                    else
+                    {
+                        alert("验证码输入错误！");
+                        $(".reg_yzm_num").html(random_num());
+                    }
+
+                }
+            } });
+
+
+//=========================
+
+        //===============================邮箱自动补全==================================
+        $("#email").autocomplete({
+            delay:0,
+            source:function (request,response) {
+                var hosts=['163.com','qq.com','sina.com','gmail.com ','sohu.com'],
+                    term=request.term,
+                    name=term,//邮箱名
+                    ix=term.indexOf('@'),//@的位置
+                    host='',//邮箱后缀名
+                    result=[];//最后返回的正确邮箱格式
+                if(ix>-1)
+                {
+                    name=term.slice(0,ix);
+                    host=term.slice(ix+1);
+                }
+                if(name)
+                {
+                    var findHost=[];
+                    if(host)
+                    {
+                        findHost= $.grep(hosts,function (value,index) {
+                            return value.indexOf(host)>-1;
+                        })
+                    }
+                    else
+                        findHost=hosts;
+                }
+                var findResult=$.map(findHost,function (value,index) {
+                    return name+'@'+value;
+                })
+                result=findResult;
+                response(result);
+            }
+        })
+
+//=========================
+        //=============================================登陆页面控制以及登陆ajax=========================================
+        $('.login').dialog({
+            autoOpen:false,
+            modal:true,
+            resizable:false,
+            buttons:{
+                '登陆':function () {
+                    if($("#login_yzm").val()==$(".reg_yzm_num").html())
+                    {
+                        $.ajax({
+                            url:'login.php',
+                            type:'POST',
+                            data: {
+                                user: $("#login_user").val(),
+                                pass: $("#login_pass").val(),
+                            },
+                            //async:false,
+                            success:function (data) {
+                                if(data==='true'){
+                                    if($("#login_user").val()=="admin")
+                                    {
+                                        window.location.href="http://localhost:8000/admin.html";
+                                    }
+                                    else{
+                                        $.cookie('user',$("#login_user").val());
+                                        $("#login,#reg").hide();
+                                        $("#user_name,#logout").show();
+                                        $("#user_name").html($.cookie('user'));
+                                        alert("登陆成功！");
+                                        $('.login').dialog('close');
+                                    }
+
+                                }
+                                else{
+                                    alert("用户名或密码错误！");
+                                }
+                            },
+                            error:function () {
+                                alert("数据库连接错误!")
+                            }
+                        })
+
+                    }
+                    else{
+                        alert("验证码输入错误！");
+                        $(".reg_yzm_num").html(random_num());
+                    }
+
+                }
+                }
+
+        });
+
+//=========================
+        //退出
+        $("#logout").click(function () {
+            $.removeCookie('user');
+            $("#login,#reg").show();
+            $("#user_name,#logout").hide();
+            $("#user_name").html("用户");
+        })
+
+//=========================
+        $(".reg_p input[title]").tooltip;
+
+//=========================
+        //================================历史订单==============================
+        $("#his_order").dialog({
+            autoOpen:false,
+            modal:true,
+            resizable:false,
+        })
+        $(".nav_bg_gwc_2").click(function () {
+            if($.cookie('user')){
+                $("#his_order").dialog('open');
+            }
+            else
+            {
+                alert("请您先登陆！");
+                $(".login").dialog("open");
+            }
+
+        })
+//=========================
+
+        //========================================联系客服==============================
+        $("#contact_service_con").dialog({
+            autoOpen:false,
+            modal:true,
+            resizable:false,
+            buttons:{
+                '提交':function () {
+
+                 $.ajax({
+                     url:'add_service.php',
+                     type:'POST',
+                     data:{
+
+                         user:$.cookie('user'),
+                         service_num:$("#question").val(),
+                         service_msg:$('#question_dec').val(),
+                     },
+                     success:function () {
+                         $("#contact_service_con").dialog('close');
+                         alert("问题提交成功，客服处理完毕后将与您联系");
+                     },
+                     error:function () {
+                         alert("问题提交失败，请稍后再试！");
+                     }
+                 })
+                }
+                },
+        })
+        $("#contact_service").click(function () {
+            if($.cookie('user')){
+                $("#contact_service_con").dialog("open");
+            }
+           else
+            {
+                alert("请您先登陆！");
+                $(".login").dialog("open");
+            }
+        })
+
+
+
+//=========================
+
+
+        //============================登陆注册按钮事件==============================
+        $('#login').click(function () {
+            $('.login').dialog('open');
+        })
+        $('#reg').click(function () {
+            $('.reg').dialog('open');
+        })
+        $("#reg_button").button();
+        $("#login_button").button();
+        $("#nav_search").button();
+
+
+        //获取验证码
+        function random_num() {
+            var random_num=Math.floor(10000*Math.random());
+            if(random_num>1000)
+                return random_num;
+            else
+                random_num();
+        }
+        $(".reg_yzm_num").html(random_num());
+        $(".reg_yzm").click(function () {
+           $(".reg_yzm_num").html(random_num());
+
+        })
+
+
+
+//=========================
+
+        var sum=[];
+
+        //================================================图书搜索===========================
+        $("#nav_search").click(function () {
+            $("#sbook").html("");
+            var sbook=$(".nav_bg_search_ipt").val();
+            $.ajax({
+                url:'sbook.php',
+                type:'POST',
+                data:{
+                    bookname:sbook,
+                },
+                success:function (response,status,xhr) {
+                    if(response!='[]'){
+                        var json=JSON.parse(response);
+                        $.each(json,function (index,value) {
+                            var html='';
+                            html+='<div class="book_show"><img src="'+value.book_url+'"><ul></ul><li><h3>书名：'+value.book_name+'</h3></li><br><li><span>书本简介：'+value.book_intro
+                                +'</span></li><li><span>价格:'+value.price+'</span></li><li><span>作者:'+value.author+'</span></li><li><span>来自:<a>'+value.business
+                                +'</a></span><button class="book_buy">购买</button></li></ul></div><hr>';
+                            sum[index]=html;
+                            $("#sbook").append(html);
+                        })
+                        $("#sbook").dialog('open');
+                    }
+                    else
+                        alert("您查找的书籍不存在！")
+                },
+                error:function () {
+                    alert("你搜索的书籍为"+sbook+",但连接数据库失败！");
+                }
+            })
+
+            //=================================图书购买======================================
+            $.each($("#sbook"),function (index,value) {
+                $("#sbook").on('click','.book_buy',function () {
+                    if($.cookie('user')){
+                        var html1='';
+                        html1+=sum[index]+'<div class="buy_div"><span class="jian">-</span>'+'<span class="buy_num">0</span>'+'<span class="jian">+</span></div>'
+                        $(".buy").append(html1);
+                        $(".buy").dialog("open");
+                    }
+                    else
+                    {
+                        alert("请您先登陆！");
+                        $(".login").dialog("open");
+                    }
+                })
+            })
+            $(".jian").click(function () {
+                $(".buy_num").html('$(".buy_num").val()-1');
+            })
+            $(".jia").click(function () {
+                $(".buy_num").html('$(".buy_num").val()+1');
+            })
+        })
+
+
+        //===============================sbook页面=======================
+        $("#sbook").dialog({
+            autoOpen:false,
+            modal:true,
+            resizable:false,
+            width:640,
+            height:510,
+        })
+        //================================购物车=======================
+        $(".buy").dialog({
+            autoOpen:false,
+            modal:true,
+            resizable:false,
+            width:640,
+            height:510,
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//设置自动切图
+        //======================设置参数=====================
+        //图片统一高度：
+        var images_height = '350px';
+        //图片路径/链接(数组形式):
+        var images_url = [
+            'img/1.jpg',
+            'img/2.jpg',
+            'img/3.jpg'
+        ];
+        var images_count = images_url.length;
+        //console.log(images_count);
+
+        //创建节点
+        //图片列表节点
+        for(var j=0;j<images_count+1;j++){
+            $('.banner ul').append('<li></li>')
+        }
+        //轮播圆点按钮节点
+        for(var j=0;j<images_count;j++){//几张图几点轮播圆点
+            if(j==0){
+                $('.banner ol').append('<li class="current"></li>')
+            }else{
+                $('.banner ol').append('<li></li>')
+            }
+        }
+
+
+
+        //载入图片
+        $('.banner ul li').css('background-image','url('+images_url[0]+')');
+        $.each(images_url,function(key,value){
+            $('.banner ul li').eq(key).css('background-image','url('+value+')');
+        });
+
+        $('.banner').css('height',images_height);
+
+        $('.banner ul').css('width',(images_count+1)*100+'%');
+
+        $('.banner ol').css('width',images_count*20+'px');
+        $('.banner ol').css('margin-left',-images_count*20*0.5-10+'px');
+
+        //=========================
+
+        var num = 0;
+        //获取窗口宽度
+        var window_width = $(window).width()-719;
+        $(window).resize(function(){
+            //window_width = $(window).width();
+            // $('.banner ul li').css({width:window_width});
+            clearInterval(timer);
+            nextPlay();
+            timer = setInterval(nextPlay,2000);
+        });
+        //console.log(window_width);
+        $('.banner ul li').width(window_width);
+        //轮播圆点
+        $('.banner ol li').mouseover(function(){
+            $(this).addClass('current').siblings().removeClass('current');
+            //第一张图： 0 * window_width
+            //第二张图： 1 * window_width
+            //第三张图： 2 * window_width
+            //获取当前编号
+            var i = $(this).index();
+            //console.log(i);
+            $('.banner ul').stop().animate({left:-i*window_width},500);
+            num = i;
+        });
+        //自动播放
+        var timer = null;
+        function prevPlay(){
+            num--;
+            if(num<0){
+                //悄悄把图片跳到最后一张图(复制页,与第一张图相同),然后做出图片播放动画，left参数是定位而不是移动的长度
+                $('.banner ul').css({left:-window_width*images_count}).stop().animate({left:-window_width*(images_count-1)},500);
+                num=images_count-1;
+            }else{
+                //console.log(num);
+                $('.banner ul').stop().animate({left:-num*window_width},500);
+            }
+            if(num==images_count-1){
+                $('.banner ol li').eq(images_count-1).addClass('current').siblings().removeClass('current');
+            }else{
+                $('.banner ol li').eq(num).addClass('current').siblings().removeClass('current');
+
+            }
+        }
+        function nextPlay(){
+            num++;
+            if(num>images_count){
+                //播放到最后一张(复制页)后,悄悄地把图片跳到第一张,因为和第一张相同,所以难以发觉,
+                $('.banner ul').css({left:0}).stop().animate({left:-window_width},500);
+                //css({left:0})是直接悄悄改变位置，animate({left:-window_width},500)是做出移动动画
+                //随后要把指针指向第二张图片,表示已经播放至第二张了。
+                num=1;
+            }else{
+                //在最后面加入一张和第一张相同的图片，如果播放到最后一张，继续往下播，悄悄回到第一张(肉眼看不见)，从第一张播放到第二张
+                //console.log(num);
+                $('.banner ul').stop().animate({left:-num*window_width},500);
+            }
+            if(num==images_count){
+                $('.banner ol li').eq(0).addClass('current').siblings().removeClass('current');
+            }else{
+                $('.banner ol li').eq(num).addClass('current').siblings().removeClass('current');
+
+            }
+        }
+        timer = setInterval(nextPlay,3000);
+        //鼠标经过banner，停止定时器,离开则继续播放
+        $('.banner').mouseenter(function(){
+            clearInterval(timer);
+            //左右箭头显示(淡入)
+            $('.banner i').fadeIn();
+        }).mouseleave(function(){
+            timer = setInterval(nextPlay,2000);
+            //左右箭头隐藏(淡出)
+            $('.banner i').fadeOut();
+        });
+        //播放下一张
+        $('.banner .right').click(function(){
+            nextPlay();
+        });
+        //返回上一张
+        $('.banner .left').click(function(){
+            prevPlay();
+        })
+
+
+
+
+
+
+
+
+
+
+
+    })
+</script>
+</body>
+</html>

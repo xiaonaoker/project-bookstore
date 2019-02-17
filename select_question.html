@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>select_question</title>
+</head>
+<body>
+<table class="content">
+    <tr>
+        <td></td>
+        <td>书本地址</td>
+        <td>价格</td>
+        <td>店铺</td>
+        <td>操作</td>
+    </tr>
+</table>
+<script>
+    $(function () {
+        $.ajax({
+            url: 'select_book.php',
+            type: 'POST',
+            success:function (response,status,xhr) {
+                if(response!='[]'){
+                    var json=JSON.parse(response);
+                    $.each(json,function (index,value) {
+                        var html='';
+                        html+='<tr><td>'+value.book_name+'</td><td>'+value.book_url+'</td><td>'+value.price+'</td><td>'+value.business
+                            +'</td><td><a href="###">修改</a>&nbsp<a href="###">删除</a>'+'</td></tr>';
+                        $("table").append(html);
+                    })
+                }
+            },
+            error:function () {
+                alert("错误！");
+            }
+        })
+
+    })
+</script>
+</body>
+</html>

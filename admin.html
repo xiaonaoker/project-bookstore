@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理中心</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style-type:none;
+        }
+        a{
+            text-decoration: none;
+            padding: 0;
+        }
+        .bg{
+            width: 100%;
+        }
+        .bg_top{
+            width: 100%;
+            height: 80px;
+            background: #003eff;
+        }
+        .bg_content{
+            width: 1400px;
+            height: 700px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .nav_wec{
+            font-size: 20px;
+            color: #ff2222;
+            position: absolute;
+            top:10px;
+            left: 30px;
+        }
+        .nav_ul{
+            float: left;
+            position: absolute;
+            top:40px;
+            left: 30px;
+        }
+        .nav_ul li{
+            float: left;
+            margin-left: 140px;
+        }
+        .ifr_content{
+            width: 1400px;
+            height: 600px;
+            position: absolute;
+            top: 100px;
+        }
+        .modify_user{
+            background: white;
+            display: none;
+        }
+    </style>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="css/dialog.css">
+</head>
+<body>
+<div class="bg">
+    <div class="bg_top">
+
+    </div>
+    <div class="bg_content">
+        <div class="nav">
+            <span class="nav_wec">欢迎您，管理员</span>
+            <ul class="nav_ul">
+                <li><a href="select_order.html" target="index">查询订单</a></li>
+                <li><a href="select_goods.html" target="index">查询所有商品</a></li>
+                <li><a href="select_question.html" target="index">查询客服问题</a></li>
+                <li><a href="#" id="modify">修改管理员密码</a></li>
+                <li><a href="http://localhost:8000">退出</a></li>
+            </ul>
+            <iframe class="ifr_content" src="index.html" name="index">
+
+            </iframe>
+        </div>
+    </div>
+    <br>
+    <br>
+    <form class="modify_user" title="修改密码">
+        <p><span>旧&nbsp密&nbsp码&nbsp：</span><input type="pass"></p>
+        <p><span>新&nbsp密&nbsp码&nbsp：</span><input type="pass"></p>
+        <p><span>确认密码：</span><input type="pass"></p>
+
+
+    </form>
+</div>
+<script>
+    $(function () {
+        $(".modify_user").dialog({
+            autoOpen:false,
+            modal:true,
+            resizable:false,
+            buttons:{
+                '提交':function () {
+
+            }
+        }
+
+        })
+        $("#modify").click(function () {
+            $(".modify_user").dialog("open");
+        })
+    })
+</script>
+</body>
+</html>

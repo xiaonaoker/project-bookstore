@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>select_goods</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style-type:none;
+        }
+        a{
+            text-decoration: none;
+            padding: 0;
+        }
+        body{
+            width: 100%;
+        }
+        .content{
+            width: 1400px;
+            margin: 0 auto;
+        }
+        table{
+            text-align: center;
+            width: 1400px;
+            margin: 0 auto;
+        }
+        .button{
+            float: right;
+        }
+        .button button{
+            margin-left:20px;
+        }
+    </style>
+    <script src="js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<div class="content">
+<table border="1">
+    <tr>
+        <td>书名</td>
+        <td>书本地址</td>
+        <td>价格</td>
+        <td>店铺</td>
+        <td>操作</td>
+    </tr>
+</table>
+<div class="button">
+    <button id="pre">上一页</button><button id="next">下一页</button><button id="add">添加新书籍</button>
+</div>
+</div>
+<script>
+    $(function () {
+        var page=1;
+        //==========================动态加载==========================
+        $.ajax({
+            url: 'select_book.php',
+            type: 'POST',
+            success:function (response,status,xhr) {
+                if(response!='[]'){
+                    var json=JSON.parse(response);
+                    $.each(json,function (index,value) {
+                        var html='';
+                        html+='<tr class="page"><td>'+value.book_name+'</td><td>'+value.book_url+'</td><td>'+value.price+'</td><td>'+value.business
+                            +'</td><td><a href="###">修改</a>&nbsp<a href="###">删除</a>'+'</td></tr>';
+                      $("table").append(html);
+                    })
+                }
+            },
+            error:function () {
+                alert("错误！");
+            }
+        })
+
+
+
+
+        //======================上一页=================================
+        $("#pre").click(function () {
+            if(page>1)
+            {
+                $(".page").hide();
+                page--;
+                $.ajax({
+                    url: 'select_book_page.php',
+                    type: 'POST',
+                    data:{
+                        page:page,
+                    },
+                    success:function (response,status,xhr) {
+                        if(response!='[]'){
+                            var json=JSON.parse(response);
+                            $.each(json,function (index,value) {
+                                var html='';
+                                html+='<tr class="page"><td>'+value.book_name+'</td><td>'+value.book_url+'</td><td>'+value.price+'</td><td>'+value.business
+                                    +'</td><td><a href="###">修改</a>&nbsp<a href="###">删除</a>'+'</td></tr>';
+                                $("table").append(html);
+                            })
+                        }
+                    },
+                    error:function () {
+                        alert("错误！");
+                    }
+                })
+            }
+
+        })
+
+
+
+
+
+        //==========================下一页===========================
+        $("#next").click(function () {
+            if(page<2)
+            {
+                $(".page").hide();
+                page++;
+                $(".page").css("display",'none');
+                $.ajax({
+                    url: 'select_book_page.php',
+                    type: 'POST',
+                    data:{
+                        page:page,
+                    },
+                    success:function (response,status,xhr) {
+                        if(response!='[]'){
+                            var json=JSON.parse(response);
+                            $.each(json,function (index,value) {
+                                var html='';
+                                html+='<tr class="page"><td>'+value.book_name+'</td><td>'+value.book_url+'</td><td>'+value.price+'</td><td>'+value.business
+                                    +'</td><td><a href="###">修改</a>&nbsp<a href="###">删除</a>'+'</td></tr>';
+                                $("table").append(html);
+                            })
+                        }
+                    },
+                    error:function () {
+                        alert("错误！");
+                    }
+                })
+            }
+        })
+
+
+
+        //=====================添加书籍===================
+        $("#add").click(function () {
+            alert("添加");
+        })
+
+    })
+</script>
+</body>
+</html>
